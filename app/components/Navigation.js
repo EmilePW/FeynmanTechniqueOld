@@ -5,7 +5,7 @@ export default class Navigation extends React.Component {
   render () {
     let NavigationStyle = {
       width: "100%",
-      height: "10%",
+      height: "15%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center"

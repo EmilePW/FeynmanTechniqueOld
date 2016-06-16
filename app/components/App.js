@@ -6,7 +6,7 @@ import Confirm from './Confirm'
 export default class App extends React.Component {
   render () {
     let AppStyle = {
-      width: '60%',
+      width: '50%',
       height: '100%',
       margin: "0 auto",
       display: 'flex',

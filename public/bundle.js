@@ -20468,9 +20468,17 @@
 	  _createClass(Navigation, [{
 	    key: 'render',
 	    value: function render() {
+	      var NavigationStyle = {
+	        width: "100%",
+	        height: "10%",
+	        display: "flex",
+	        justifyContent: "center",
+	        alignItems: "center"
+	      };
+
 	      return _react2.default.createElement(
 	        'nav',
-	        null,
+	        { style: NavigationStyle },
 	        _react2.default.createElement(_Logo2.default, null)
 	      );
 	    }
@@ -20517,7 +20525,7 @@
 	  _createClass(Logo, [{
 	    key: "render",
 	    value: function render() {
-	      return _react2.default.createElement("img", { src: "", alt: "Feynman Technique Logo" });
+	      return _react2.default.createElement("img", { src: "../../assets/brown-throated-thrush.jpg", alt: "Feynman Technique Logo" });
 	    }
 	  }]);
 
@@ -20570,9 +20578,18 @@
 	  _createClass(Pad, [{
 	    key: 'render',
 	    value: function render() {
+	      var PadStyle = {
+	        width: '100%',
+	        height: '80%',
+	        display: 'flex',
+	        flexDirection: 'column',
+	        justifyContent: 'space-around',
+	        alignItems: 'center'
+	      };
+
 	      return _react2.default.createElement(
 	        'main',
-	        null,
+	        { style: PadStyle },
 	        _react2.default.createElement(_TopicTitle2.default, null),
 	        _react2.default.createElement(_Explanation2.default, null)
 	      );
@@ -20588,7 +20605,7 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20621,9 +20638,16 @@
 	  }
 
 	  _createClass(TopicTitle, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
-	      return _react2.default.createElement('input', { type: 'text', placeholder: 'Topic Title' });
+	      var TopicTitleStyle = {
+	        width: "100%",
+	        height: "10%",
+	        display: "flex",
+	        justifyContent: "center",
+	        alignItems: "center"
+	      };
+	      return _react2.default.createElement("input", { style: TopicTitleStyle, type: "text", placeholder: "Topic Title" });
 	    }
 	  }]);
 
@@ -20636,7 +20660,7 @@
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20666,13 +20690,17 @@
 	  }
 
 	  _createClass(Explanation, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'textarea',
-	        null,
-	        'Write Your Explanation Here...'
-	      );
+	      var ExplanationStyle = {
+	        width: "100%",
+	        height: "90%",
+	        display: "flex",
+	        justifyContent: "center",
+	        alignItems: "center"
+	      };
+
+	      return _react2.default.createElement("textarea", { style: ExplanationStyle, placeholder: "Write Your Explanation Here..." });
 	    }
 	  }]);
 
@@ -20685,7 +20713,7 @@
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20715,12 +20743,24 @@
 	  }
 
 	  _createClass(Confirm, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
+	      var ConfirmStyle = {
+	        width: "100%",
+	        height: "10%",
+	        display: "flex",
+	        justifyContent: "center",
+	        alignItems: "center"
+	      };
+
 	      return _react2.default.createElement(
-	        'button',
-	        null,
-	        'Confirm'
+	        "footer",
+	        { style: ConfirmStyle },
+	        _react2.default.createElement(
+	          "button",
+	          null,
+	          "Confirm"
+	        )
 	      );
 	    }
 	  }]);

@@ -6,7 +6,7 @@ export default class Pad extends React.Component {
   render () {
     let PadStyle = {
       width: '100%',
-      height: '80%',
+      height: '70%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-around',

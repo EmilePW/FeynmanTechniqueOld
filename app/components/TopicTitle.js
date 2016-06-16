@@ -12,8 +12,19 @@ export default class TopicTitle extends React.Component {
       height: "10%",
       display: "flex",
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+      textAlign: "center",
+      boxSizing: "border-box",
+      padding: "10px",
+      fontFamily: "Lora",
+      fontSize: "16px",
+      textTransform: "uppercase",
+      fontWeight: "bold",
+      letterSpacing: "5px",
+      textIndent: "5px",
+      color: "#222"
     }
+
     return (
       <input style={TopicTitleStyle} type='text' placeholder='Topic Title' />
     )
