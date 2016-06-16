@@ -20403,9 +20403,19 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
+	      var AppStyle = {
+	        width: '60%',
+	        height: '100%',
+	        margin: "0 auto",
+	        display: 'flex',
+	        flexDirection: 'column',
+	        justifyContent: 'space-around',
+	        alignItems: 'center'
+	      };
+
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { style: AppStyle },
 	        _react2.default.createElement(_Navigation2.default, null),
 	        _react2.default.createElement(_Pad2.default, null),
 	        _react2.default.createElement(_Confirm2.default, null)

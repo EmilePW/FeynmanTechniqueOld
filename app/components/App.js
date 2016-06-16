@@ -5,8 +5,18 @@ import Confirm from './Confirm'
 
 export default class App extends React.Component {
   render () {
+    let AppStyle = {
+      width: '60%',
+      height: '100%',
+      margin: "0 auto",
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      alignItems: 'center'
+    }
+
     return (
-      <div>
+      <div style={AppStyle}>
         <Navigation />
         <Pad />
         <Confirm />
