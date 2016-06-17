@@ -9,7 +9,9 @@ export default class Explanation extends React.Component {
       justifyContent: 'center',
       alignItems: 'center',
       boxSizing: 'border-box',
-      padding: '10px',
+      padding: '30px 15px',
+      border: "none",
+      outline: "none",
       resize: 'none',
       fontFamily: 'Jaldi',
       fontSize: '18px',
@@ -18,7 +20,7 @@ export default class Explanation extends React.Component {
     }
 
     return (
-      <textarea className='type-2' style={ExplanationStyle} placeholder='Write Your Explanation Here...'>
+      <textarea style={ExplanationStyle} placeholder='Write your simple explanation here...'>
         
       </textarea>
     )

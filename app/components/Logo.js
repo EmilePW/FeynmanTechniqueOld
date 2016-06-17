@@ -3,7 +3,7 @@ import React from 'react'
 export default class Logo extends React.Component {
   render () {
     let LogoStyle = {
-      width: '70%',
+      width: '80%',
       height: '100%',
       margin: '0 auto',
       display: 'flex',
@@ -18,6 +18,14 @@ export default class Logo extends React.Component {
       color: '#222'
     }
 
+    let LogoTitleStyle = {
+      width: '40%',
+      height: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+
     let LogoImageStyle = {
       width: '50px',
       height:'50px',
@@ -25,11 +33,11 @@ export default class Logo extends React.Component {
     }
 
     return (
-      <h1 className='type-1' style={LogoStyle}>
-        Feynman
+      <header style={LogoStyle}>
+        <h1 style={LogoTitleStyle}>Feynman</h1>
         <img style={LogoImageStyle} src='../../assets/brown-throated-thrush.jpg' alt='Feynman Technique Logo' />
-        Technique
-      </h1>
+        <h1 style={LogoTitleStyle}>Technique</h1>
+      </header>
     )
   }
 }
