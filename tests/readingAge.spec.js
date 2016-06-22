@@ -1,6 +1,5 @@
 import expect from 'expect'
-var calculateReadingAge = require('../js/readingAge');
-
+import calculateReadingAge from '../js/readingAge'
 
 describe('readingAge', () => {
 
