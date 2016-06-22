@@ -15,8 +15,8 @@ export default class Pad extends React.Component {
 
     return (
       <main style={PadStyle}>
-        <TopicTitle topic={this.props.topic} />
-        <Explanation explanation={this.props.explanation} />
+        <TopicTitle updateTopic={this.props.updateTopic} />
+        <Explanation updateExplanation={this.props.updateExplanation} />
       </main>
     )
   }

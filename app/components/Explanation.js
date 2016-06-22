@@ -1,9 +1,13 @@
 import React from 'react'
 
 export default class Explanation extends React.Component {
+  handleChange (e) {
+    this.props.updateExplanation(e.target.value)
+  }
+
   render () {
     let ExplanationStyle = {
-      width: '100%',
+      width: '80%',
       height: '90%',
       display: 'flex',
       justifyContent: 'center',
@@ -20,7 +24,7 @@ export default class Explanation extends React.Component {
     }
 
     return (
-      <textarea style={ExplanationStyle} placeholder='Write your simple explanation here...'></textarea>
+      <textarea onChange={this.handleChange.bind(this)} style={ExplanationStyle} placeholder='Write your simple explanation here...'></textarea>
     )
   }
 }

@@ -1,11 +1,6 @@
 import React from 'react'
 
 export default class Confirm extends React.Component {
-  updateInfo () {
-    this.props.updateTopic()
-    this.props.updateExplanation()
-  }
-
   render () {
     let ConfirmStyle = {
       width: "100%",
@@ -26,7 +21,7 @@ export default class Confirm extends React.Component {
 
     return (
       <footer style={ConfirmStyle}>
-        <button onClick={this.updateInfo.bind(this)} style={ConfirmButtonStyle}>Check</button>
+        <button onClick={console.log(this.props.theState)} style={ConfirmButtonStyle}>Check</button>
       </footer>
     )
   }

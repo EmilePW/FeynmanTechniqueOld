@@ -38,6 +38,13 @@ export default class App extends React.Component {
 
   render () {
     let AppStyle = {
+      width: '100%',
+      height: '100%',
+      margin: '0 auto',
+      display: 'flex'
+    }
+
+    let MainStyle = {
       width: '50%',
       height: '100%',
       margin: "0 auto",
@@ -49,9 +56,11 @@ export default class App extends React.Component {
 
     return (
       <div style={AppStyle}>
-        <Navigation />
-        <Pad />
-        <Confirm />
+        <main style={MainStyle}>
+          <Navigation />
+          <Pad updateTopic={this.updateTopic} updateExplanation={this.updateExplanation} />
+          <Confirm theState={this.state} />
+        </main>
         <Analysis readingAge={this.getReadingAge} />
       </div>
     )

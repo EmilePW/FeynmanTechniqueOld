@@ -6,6 +6,10 @@
 import React from 'react'
 
 export default class TopicTitle extends React.Component {
+  handleChange (e) {
+    this.props.updateTopic(e.target.value)
+  }
+
   render () {
     let TopicTitleStyle = {
       width: '80%',
@@ -29,7 +33,7 @@ export default class TopicTitle extends React.Component {
     }
 
     return (
-      <input style={TopicTitleStyle} type='text' placeholder='Topic Title' />
+      <input onChange={this.handleChange.bind(this)} style={TopicTitleStyle} type='text' placeholder='Topic Title' />
     )
   }
 }
