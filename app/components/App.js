@@ -2,8 +2,40 @@ import React from 'react'
 import Navigation from './Navigation'
 import Pad from './Pad'
 import Confirm from './Confirm'
+import Analysis from './Analysis'
+import calculateReadingAge from '../../js/readingAge'
 
 export default class App extends React.Component {
+  constructor () {
+    super()
+
+    this.state = {
+      topic: '',
+      explanation: ''
+    }
+
+    this.updateTopic = this.updateTopic.bind(this)
+    this.updateExplanation = this.updateExplanation.bind(this)
+    this.getReadingAge = this.getReadingAge.bind(this)
+  }
+
+  updateTopic (topic) {
+    this.setState({
+      topic: topic
+    })
+  }
+
+  updateExplanation (explanation) {
+    this.setState({
+      explanation: explanation
+    })
+  }
+
+  getReadingAge () {
+    let explanation = this.state.explanation
+    return calculateReadingAge(explanation)
+  }
+
   render () {
     let AppStyle = {
       width: '50%',
@@ -20,6 +52,7 @@ export default class App extends React.Component {
         <Navigation />
         <Pad />
         <Confirm />
+        <Analysis readingAge={this.getReadingAge} />
       </div>
     )
   }

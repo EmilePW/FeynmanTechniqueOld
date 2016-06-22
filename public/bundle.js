@@ -20383,6 +20383,14 @@
 
 	var _Confirm2 = _interopRequireDefault(_Confirm);
 
+	var _Analysis = __webpack_require__(175);
+
+	var _Analysis2 = _interopRequireDefault(_Analysis);
+
+	var _readingAge = __webpack_require__(176);
+
+	var _readingAge2 = _interopRequireDefault(_readingAge);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20397,14 +20405,44 @@
 	  function App() {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this));
+
+	    _this.state = {
+	      topic: '',
+	      explanation: ''
+	    };
+
+	    _this.updateTopic = _this.updateTopic.bind(_this);
+	    _this.updateExplanation = _this.updateExplanation.bind(_this);
+	    _this.getReadingAge = _this.getReadingAge.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(App, [{
+	    key: 'updateTopic',
+	    value: function updateTopic(topic) {
+	      this.setState({
+	        topic: topic
+	      });
+	    }
+	  }, {
+	    key: 'updateExplanation',
+	    value: function updateExplanation(explanation) {
+	      this.setState({
+	        explanation: explanation
+	      });
+	    }
+	  }, {
+	    key: 'getReadingAge',
+	    value: function getReadingAge() {
+	      var explanation = this.state.explanation;
+	      return (0, _readingAge2.default)(explanation);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var AppStyle = {
-	        width: '60%',
+	        width: '50%',
 	        height: '100%',
 	        margin: "0 auto",
 	        display: 'flex',
@@ -20418,7 +20456,8 @@
 	        { style: AppStyle },
 	        _react2.default.createElement(_Navigation2.default, null),
 	        _react2.default.createElement(_Pad2.default, null),
-	        _react2.default.createElement(_Confirm2.default, null)
+	        _react2.default.createElement(_Confirm2.default, null),
+	        _react2.default.createElement(_Analysis2.default, { readingAge: this.getReadingAge })
 	      );
 	    }
 	  }]);
@@ -20470,7 +20509,7 @@
 	    value: function render() {
 	      var NavigationStyle = {
 	        width: "100%",
-	        height: "10%",
+	        height: "15%",
 	        display: "flex",
 	        justifyContent: "center",
 	        alignItems: "center"
@@ -20493,7 +20532,7 @@
 /* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20523,9 +20562,53 @@
 	  }
 
 	  _createClass(Logo, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement("img", { src: "../../assets/brown-throated-thrush.jpg", alt: "Feynman Technique Logo" });
+	      var LogoStyle = {
+	        width: '80%',
+	        height: '100%',
+	        margin: '0 auto',
+	        display: 'flex',
+	        justifyContent: 'space-around',
+	        alignItems: 'center',
+	        fontFamily: 'Lora',
+	        fontSize: '20px',
+	        textTransform: 'uppercase',
+	        fontWeight: 'bold',
+	        letterSpacing: '5px',
+	        textIndent: '5px',
+	        color: '#222'
+	      };
+
+	      var LogoTitleStyle = {
+	        width: '40%',
+	        height: '100%',
+	        display: 'flex',
+	        justifyContent: 'center',
+	        alignItems: 'center'
+	      };
+
+	      var LogoImageStyle = {
+	        width: '50px',
+	        height: '50px',
+	        borderRadius: '100%'
+	      };
+
+	      return _react2.default.createElement(
+	        'header',
+	        { style: LogoStyle },
+	        _react2.default.createElement(
+	          'h1',
+	          { style: LogoTitleStyle },
+	          'Feynman'
+	        ),
+	        _react2.default.createElement('img', { style: LogoImageStyle, src: '../../assets/brown-throated-thrush.jpg', alt: 'Feynman Technique Logo' }),
+	        _react2.default.createElement(
+	          'h1',
+	          { style: LogoTitleStyle },
+	          'Technique'
+	        )
+	      );
 	    }
 	  }]);
 
@@ -20580,7 +20663,7 @@
 	    value: function render() {
 	      var PadStyle = {
 	        width: '100%',
-	        height: '80%',
+	        height: '70%',
 	        display: 'flex',
 	        flexDirection: 'column',
 	        justifyContent: 'space-around',
@@ -20590,8 +20673,8 @@
 	      return _react2.default.createElement(
 	        'main',
 	        { style: PadStyle },
-	        _react2.default.createElement(_TopicTitle2.default, null),
-	        _react2.default.createElement(_Explanation2.default, null)
+	        _react2.default.createElement(_TopicTitle2.default, { topic: this.props.topic }),
+	        _react2.default.createElement(_Explanation2.default, { explanation: this.props.explanation })
 	      );
 	    }
 	  }]);
@@ -20605,7 +20688,7 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20638,16 +20721,30 @@
 	  }
 
 	  _createClass(TopicTitle, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var TopicTitleStyle = {
-	        width: "100%",
-	        height: "10%",
-	        display: "flex",
-	        justifyContent: "center",
-	        alignItems: "center"
+	        width: '80%',
+	        height: '10%',
+	        display: 'flex',
+	        justifyContent: 'center',
+	        alignItems: 'center',
+	        textAlign: 'center',
+	        boxSizing: 'border-box',
+	        padding: '10px',
+	        border: 'none',
+	        borderBottom: '1px solid #ccc',
+	        outline: 'none',
+	        fontFamily: 'Lora',
+	        fontSize: '16px',
+	        textTransform: 'uppercase',
+	        fontWeight: 'bold',
+	        letterSpacing: '5px',
+	        textIndent: '5px',
+	        color: '#222'
 	      };
-	      return _react2.default.createElement("input", { style: TopicTitleStyle, type: "text", placeholder: "Topic Title" });
+
+	      return _react2.default.createElement('input', { style: TopicTitleStyle, type: 'text', placeholder: 'Topic Title' });
 	    }
 	  }]);
 
@@ -20660,7 +20757,7 @@
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20690,17 +20787,26 @@
 	  }
 
 	  _createClass(Explanation, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var ExplanationStyle = {
-	        width: "100%",
-	        height: "90%",
-	        display: "flex",
-	        justifyContent: "center",
-	        alignItems: "center"
+	        width: '100%',
+	        height: '90%',
+	        display: 'flex',
+	        justifyContent: 'center',
+	        alignItems: 'center',
+	        boxSizing: 'border-box',
+	        padding: '30px 15px',
+	        border: "none",
+	        outline: "none",
+	        resize: 'none',
+	        fontFamily: 'Jaldi',
+	        fontSize: '18px',
+	        lineHeight: '26px',
+	        color: '#444'
 	      };
 
-	      return _react2.default.createElement("textarea", { style: ExplanationStyle, placeholder: "Write Your Explanation Here..." });
+	      return _react2.default.createElement('textarea', { style: ExplanationStyle, placeholder: 'Write your simple explanation here...' });
 	    }
 	  }]);
 
@@ -20743,14 +20849,29 @@
 	  }
 
 	  _createClass(Confirm, [{
+	    key: "updateInfo",
+	    value: function updateInfo() {
+	      this.props.updateTopic();
+	      this.props.updateExplanation();
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var ConfirmStyle = {
 	        width: "100%",
-	        height: "10%",
+	        height: "15%",
 	        display: "flex",
 	        justifyContent: "center",
 	        alignItems: "center"
+	      };
+
+	      var ConfirmButtonStyle = {
+	        width: "100px",
+	        height: "40px",
+	        background: "white",
+	        border: "2px double #222",
+	        fontFamily: "Jaldi",
+	        fontSize: "16px"
 	      };
 
 	      return _react2.default.createElement(
@@ -20758,8 +20879,8 @@
 	        { style: ConfirmStyle },
 	        _react2.default.createElement(
 	          "button",
-	          null,
-	          "Confirm"
+	          { onClick: this.updateInfo.bind(this), style: ConfirmButtonStyle },
+	          "Check"
 	        )
 	      );
 	    }
@@ -20769,6 +20890,83 @@
 	}(_react2.default.Component);
 
 	exports.default = Confirm;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Analysis = function (_React$Component) {
+	  _inherits(Analysis, _React$Component);
+
+	  function Analysis() {
+	    _classCallCheck(this, Analysis);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Analysis).apply(this, arguments));
+	  }
+
+	  _createClass(Analysis, [{
+	    key: 'render',
+	    value: function render() {
+	      var readingAge = this.props.readingAge();
+
+	      return _react2.default.createElement(
+	        'section',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          readingAge
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Analysis;
+	}(_react2.default.Component);
+
+	exports.default = Analysis;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function calculateReadingAge(text) {
+	  // Calculates automated readability index
+	  var terminalPunctuation = /\.+|\?+|!+/;
+
+	  var characters = text.split('').filter(function (char) {
+	    return (/\w/.test(char)
+	    );
+	  });
+	  var words = text.split(' ');
+	  var sentences = text.split(terminalPunctuation).slice(0, -1);
+
+	  return Math.floor(4.71 * (characters.length / words.length) + 0.5 * (words.length / sentences.length) - 21.43);
+	}
+
+	console.log(calculateReadingAge('The quick brown fox jumped over the lazy dog'));
 
 /***/ }
 /******/ ]);

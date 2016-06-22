@@ -20,9 +20,7 @@ export default class Explanation extends React.Component {
     }
 
     return (
-      <textarea style={ExplanationStyle} placeholder='Write your simple explanation here...'>
-        
-      </textarea>
+      <textarea style={ExplanationStyle} placeholder='Write your simple explanation here...'></textarea>
     )
   }
 }

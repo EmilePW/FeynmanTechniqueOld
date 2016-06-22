@@ -1,9 +1,16 @@
 function calculateReadingAge (text) {
-  let terminalPunctuation = /\.+|\?+|!+/
+  if (!text) {
+    return false
+  }
 
-  let characters = text.split('').filter((char) => /\w/.test(char))
-  let words = text.split(' ')
-  let sentences = text.split(terminalPunctuation).slice(0, -1)
+  // Calculates automated readability index
+  var terminalPunctuation = /\.+|\?+|!+/
 
-  return 4.71 * (characters.length / words.length) + 0.5 * (words.length / sentences.length) - 21.43
+  var characters = text.split('').filter((char) => /\w/.test(char))
+  var words = text.split(' ')
+  var sentences =  terminalPunctuation.test(text) ? text.split(terminalPunctuation).slice(0, -1) : [text]
+
+  return Math.floor(4.71 * (characters.length / words.length) + 0.5 * (words.length / sentences.length) - 21.43)
 }
+
+module.exports = calculateReadingAge
