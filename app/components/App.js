@@ -3,7 +3,7 @@ import Navigation from './Navigation'
 import Pad from './Pad'
 import Confirm from './Confirm'
 import Analysis from './Analysis'
-import calculateReadingAge from '../../js/readingAge'
+import readingAge from '../../readingAge/readingAge'
 
 export default class App extends React.Component {
   constructor () {
@@ -11,12 +11,13 @@ export default class App extends React.Component {
 
     this.state = {
       topic: '',
-      explanation: ''
+      explanation: '',
+      readingAge: undefined
     }
 
     this.updateTopic = this.updateTopic.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
-    this.getReadingAge = this.getReadingAge.bind(this)
+    this.updateReadingAge = this.updateReadingAge.bind(this)
   }
 
   updateTopic (topic) {
@@ -31,9 +32,12 @@ export default class App extends React.Component {
     })
   }
 
-  getReadingAge () {
+  updateReadingAge () {
     let explanation = this.state.explanation
-    return calculateReadingAge(explanation)
+    let calculatedReadingAge = readingAge(explanation)
+    return this.setState({
+      readingAge: calculatedReadingAge
+    })
   }
 
   render () {
@@ -59,9 +63,9 @@ export default class App extends React.Component {
         <main style={MainStyle}>
           <Navigation />
           <Pad updateTopic={this.updateTopic} updateExplanation={this.updateExplanation} />
-          <Confirm theState={this.state} />
+          <Confirm updateReadingAge={this.updateReadingAge} />
         </main>
-        <Analysis readingAge={this.getReadingAge} />
+        <Analysis readingAge={this.state.readingAge} />
       </div>
     )
   }

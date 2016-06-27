@@ -7,6 +7,9 @@ module.exports = {
     port: 4010,
     inline: true
   },
+  node: {
+    fs: 'empty'
+  },
   module: {
     loaders: [
       {

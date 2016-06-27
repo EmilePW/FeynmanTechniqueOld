@@ -27,7 +27,7 @@ export default class Analysis extends React.Component {
       fontSize: '50px'
     }
 
-    let readingAge = this.props.readingAge()
+    let readingAge = this.props.readingAge
     
     return (
       <section style={AnalysisStyle}>
