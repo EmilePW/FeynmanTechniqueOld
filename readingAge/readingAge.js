@@ -5,7 +5,7 @@ var topFiveThousandWords = require(__dirname + '/top5000Words')
 topFiveThousandWords = topFiveThousandWords.map(function(rank) { return rank["Word"] })
 
 function readingAge (text) {
-  // Calculates accorign tot he Gunning-Fog Readability Score
+  // Calculates accorign to the Gunning-Fog Readability Score
 
   if (!text)
     return false
