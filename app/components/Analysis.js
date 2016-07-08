@@ -33,6 +33,9 @@ export default class Analysis extends React.Component {
       <section style={AnalysisStyle}>
         <h3 style={HeadingStyle}>Reading Age</h3>
         <h1 style={ReadingAgeStyle}>{readingAge}</h1>
+        <p>
+          {this.props.wikiArticle}
+        </p>
       </section>
     )
   }

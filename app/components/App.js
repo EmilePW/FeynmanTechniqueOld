@@ -4,6 +4,7 @@ import Pad from './Pad'
 import Confirm from './Confirm'
 import Analysis from './Analysis'
 import readingAge from '../../readingAge/readingAge'
+import getWikiRef from '../wikipedia'
 
 export default class App extends React.Component {
   constructor () {
@@ -12,12 +13,14 @@ export default class App extends React.Component {
     this.state = {
       topic: '',
       explanation: '',
-      readingAge: undefined
+      readingAge: undefined,
+      wikiArticle: ''
     }
 
     this.updateTopic = this.updateTopic.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
     this.updateReadingAge = this.updateReadingAge.bind(this)
+    // this.updateWikiArticle = this.updateWikiArticle.bind(this)
   }
 
   updateTopic (topic) {
@@ -39,6 +42,20 @@ export default class App extends React.Component {
       readingAge: calculatedReadingAge
     })
   }
+
+  // updateWikiArticle () {
+  //   let topic = this.state.topic
+
+  //   getWikiRef(topic)
+  //     .then(function (response) {
+  //       this.setState({
+  //         wikiArticle: response
+  //       })
+  //     })
+  //     .catch(function (err) {
+  //       console.log(err)
+  //     })
+  // }
 
   render () {
     let AppStyle = {
@@ -63,9 +80,9 @@ export default class App extends React.Component {
         <main style={MainStyle}>
           <Navigation />
           <Pad updateTopic={this.updateTopic} updateExplanation={this.updateExplanation} />
-          <Confirm updateReadingAge={this.updateReadingAge} />
+          <Confirm updateReadingAge={this.updateReadingAge}  />
         </main>
-        <Analysis readingAge={this.state.readingAge} />
+        <Analysis readingAge={this.state.readingAge} wikiArticle={this.state.wikiArticle} />
       </div>
     )
   }
