@@ -3,7 +3,6 @@ import Navigation from './Navigation'
 import Pad from './Pad'
 import Confirm from './Confirm'
 import Analysis from './Analysis'
-import readingAge from '../../readingAge/readingAge'
 import getWikiRef from '../wikipedia'
 
 export default class App extends React.Component {
