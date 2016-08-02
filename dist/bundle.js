@@ -58,14 +58,10 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _wikipedia = __webpack_require__(176);
-
-	var _wikipedia2 = _interopRequireDefault(_wikipedia);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Import styles from Sass
-	__webpack_require__(177);
+	__webpack_require__(176);
 
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
 
@@ -20999,56 +20995,22 @@
 
 /***/ },
 /* 176 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = getWikiRef;
-	function getWikiRef(topic) {
-	  // Get summary of an article from Wikipedia to compare against the Feynman
-	  var d = new Promise(function (resolve, reject) {
-	    var req = new XMLHttpRequest();
-
-	    req.open('GET', 'https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json');
-	    req.send();
-
-	    req.onload = function () {
-	      if (this.status >= 200 && this.status < 300) {
-	        resolve(this.response);
-	      } else {
-	        reject('Request failed');
-	      }
-	    };
-	  }).then(function (data) {
-	    console.log(data);
-	  });
-
-	  return d;
-	}
-
-	getWikiRef();
-
-/***/ },
-/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(178);
+	var content = __webpack_require__(177);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(180)(content, {});
+	var update = __webpack_require__(179)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./main.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/sass-loader/index.js!./main.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -21058,10 +21020,10 @@
 	}
 
 /***/ },
-/* 178 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(179)();
+	exports = module.exports = __webpack_require__(178)();
 	// imports
 
 
@@ -21072,7 +21034,7 @@
 
 
 /***/ },
-/* 179 */
+/* 178 */
 /***/ function(module, exports) {
 
 	/*
@@ -21128,7 +21090,7 @@
 
 
 /***/ },
-/* 180 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
