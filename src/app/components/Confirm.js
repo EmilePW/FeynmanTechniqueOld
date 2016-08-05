@@ -21,7 +21,7 @@ export default class Confirm extends React.Component {
 
     return (
       <footer style={ConfirmStyle}>
-        <button onClick={this.props.updateReadingAge} style={ConfirmButtonStyle}>Check</button>
+        <button onClick={this.props.checkWikiSummary} style={ConfirmButtonStyle}>Check</button>
       </footer>
     )
   }

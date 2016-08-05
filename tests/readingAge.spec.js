@@ -1,5 +1,5 @@
 import expect from 'expect'
-import readingAge from '../js/readingAge'
+import readingAge from '../readingAge/readingAge'
 
 describe('readingAge', () => {
 

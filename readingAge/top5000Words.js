@@ -197,7 +197,7 @@ module.exports = [
   },
   {
     'Rank': 29,
-    'Word': 'n't',
+    'Word': 'n\'t',
     'Part of speech': 'x',
     'Frequency': 1619007,
     'Dispersion': 0.97
@@ -28715,7 +28715,7 @@ module.exports = [
   },
   {
     'Rank': 4103,
-    'Word': 'o'clock',
+    'Word': 'o\'clock',
     'Part of speech': 'r',
     'Frequency': 6972,
     'Dispersion': 0.97

@@ -4,6 +4,8 @@ import Pad from './Pad'
 import Confirm from './Confirm'
 import Analysis from './Analysis'
 
+import getWikiSummary from '../wikipedia'
+
 export default class App extends React.Component {
   constructor () {
     super()
@@ -12,8 +14,12 @@ export default class App extends React.Component {
       topic: '',
       explanation: '',
       readingAge: undefined,
-      wikiArticle: ''
+      wikiSummary: ''
     }
+
+    this.updateTopic = this.updateTopic.bind(this)
+    this.updateExplanation = this.updateExplanation.bind(this)
+    this.onCheck = this.onCheck.bind(this)
   }
 
   updateTopic (topic) {
@@ -34,6 +40,11 @@ export default class App extends React.Component {
     return this.setState({
       readingAge: calculatedReadingAge
     })
+  }
+
+  onCheck () {
+    // Get Simple English Wikipedia summary of topic
+    getWikiSummary(this.state.topic, (summary) => this.setState({ wikiSummary: summary }))
   }
 
   render () {
@@ -59,9 +70,9 @@ export default class App extends React.Component {
         <main style={MainStyle}>
           <Navigation />
           <Pad updateTopic={this.updateTopic} updateExplanation={this.updateExplanation} />
-          <Confirm updateReadingAge={this.updateReadingAge}  />
+          <Confirm checkWikiSummary={this.onCheck} />
         </main>
-        <Analysis readingAge={this.state.readingAge} />
+        <Analysis topic={this.state.topic} wikiSummary={this.state.wikiSummary} />
       </div>
     )
   }
