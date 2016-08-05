@@ -4,7 +4,7 @@ import Pad from './Pad'
 import Confirm from './Confirm'
 import Analysis from './Analysis'
 
-import getWikiSummary from '../wikipedia'
+import getWikiSummary from '../wikipediaSummary'
 
 export default class App extends React.Component {
   constructor () {

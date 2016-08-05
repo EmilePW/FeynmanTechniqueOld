@@ -61,7 +61,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// Import styles from Sass
-	__webpack_require__(176);
+	__webpack_require__(177);
 
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
 
@@ -20390,6 +20390,10 @@
 
 	var _Analysis2 = _interopRequireDefault(_Analysis);
 
+	var _wikipediaSummary = __webpack_require__(176);
+
+	var _wikipediaSummary2 = _interopRequireDefault(_wikipediaSummary);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20410,8 +20414,12 @@
 	      topic: '',
 	      explanation: '',
 	      readingAge: undefined,
-	      wikiArticle: ''
+	      wikiSummary: ''
 	    };
+
+	    _this.updateTopic = _this.updateTopic.bind(_this);
+	    _this.updateExplanation = _this.updateExplanation.bind(_this);
+	    _this.onCheck = _this.onCheck.bind(_this);
 	    return _this;
 	  }
 
@@ -20436,6 +20444,16 @@
 	      var calculatedReadingAge = readingAge(explanation);
 	      return this.setState({
 	        readingAge: calculatedReadingAge
+	      });
+	    }
+	  }, {
+	    key: 'onCheck',
+	    value: function onCheck() {
+	      var _this2 = this;
+
+	      // Get Simple English Wikipedia summary of topic
+	      (0, _wikipediaSummary2.default)(this.state.topic, function (summary) {
+	        return _this2.setState({ wikiSummary: summary });
 	      });
 	    }
 	  }, {
@@ -20466,9 +20484,9 @@
 	          { style: MainStyle },
 	          _react2.default.createElement(_Navigation2.default, null),
 	          _react2.default.createElement(_Pad2.default, { updateTopic: this.updateTopic, updateExplanation: this.updateExplanation }),
-	          _react2.default.createElement(_Confirm2.default, { updateReadingAge: this.updateReadingAge })
+	          _react2.default.createElement(_Confirm2.default, { checkWikiSummary: this.onCheck })
 	        ),
-	        _react2.default.createElement(_Analysis2.default, { readingAge: this.state.readingAge })
+	        _react2.default.createElement(_Analysis2.default, { topic: this.state.topic, wikiSummary: this.state.wikiSummary })
 	      );
 	    }
 	  }]);
@@ -20891,7 +20909,7 @@
 	        { style: ConfirmStyle },
 	        _react2.default.createElement(
 	          "button",
-	          { onClick: this.props.updateReadingAge, style: ConfirmButtonStyle },
+	          { onClick: this.props.checkWikiSummary, style: ConfirmButtonStyle },
 	          "Check"
 	        )
 	      );
@@ -20941,27 +20959,29 @@
 	    value: function render() {
 	      var AnalysisStyle = {
 	        width: '50%',
-	        height: '100%',
-	        display: 'flex',
-	        flexDirection: 'column',
-	        justifyContent: 'center',
-	        alignItems: 'center',
-	        textAlign: 'center'
+	        height: '100%'
 	      };
 
 	      var HeadingStyle = {
 	        padding: '50px',
 	        fontFamily: 'Lora',
 	        fontSize: '18px',
+	        height: '20%',
 	        lineHeight: '60px',
+	        'textAlign': 'center',
 	        textTransform: 'uppercase',
 	        letterSpacing: '5px'
 	      };
 
-	      var ReadingAgeStyle = {
+	      var WikiSummaryStyle = {
 	        padding: '20px',
 	        fontFamily: 'Jaldi',
-	        fontSize: '50px'
+	        fontSize: '16px',
+	        lineHeight: '30px',
+	        height: '80%',
+	        margin: '0 auto',
+	        display: 'flex',
+	        width: '80%'
 	      };
 
 	      var readingAge = this.props.readingAge;
@@ -20972,17 +20992,14 @@
 	        _react2.default.createElement(
 	          'h3',
 	          { style: HeadingStyle },
-	          'Reading Age'
-	        ),
-	        _react2.default.createElement(
-	          'h1',
-	          { style: ReadingAgeStyle },
-	          readingAge
+	          'What is ',
+	          this.props.topic,
+	          '?'
 	        ),
 	        _react2.default.createElement(
 	          'p',
-	          null,
-	          'a'
+	          { style: WikiSummaryStyle },
+	          this.props.wikiSummary
 	        )
 	      );
 	    }
@@ -20995,15 +21012,72 @@
 
 /***/ },
 /* 176 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var getWikiSummary = function getWikiSummary(topic, callback) {
+	  // Format topic to be the same as the wikipedia uri
+	  var capAndUnderscore = function capAndUnderscore(words) {
+	    words = words.toLowerCase().split(' ');
+	    words[0] = words[0].split('');
+	    words[0][0] = words[0][0].toUpperCase();
+	    words[0] = words[0].join('');
+	    return words.join('_');
+	  };
+
+	  var formattedTopic = capAndUnderscore(topic);
+
+	  // standard uri without topic
+	  var wikipediaURI = 'https://simple.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
+
+	  var d = new Promise(function (resolve, reject) {
+	    var req = new XMLHttpRequest();
+	    req.open('GET', wikipediaURI + formattedTopic);
+
+	    req.onload = function () {
+	      if (this.status >= 200 && this.status < 300) {
+	        resolve(this.response);
+	      } else {
+	        reject('Topic not found in wikipedia, check the spelling, otherwise it doesn\'t exist');
+	      }
+	    };
+
+	    req.onerror = function (err) {
+	      reject(err);
+	    };
+
+	    req.send();
+	  });
+
+	  d.then(function (response) {
+	    response = JSON.parse(response);
+	    var pages = response.query.pages;
+	    var summary = pages[Object.keys(pages)[0]].extract;
+
+	    return callback(summary);
+	  }).catch(function (error) {
+	    console.log(error);
+	    return callback(error);
+	  });
+	};
+
+	exports.default = getWikiSummary;
+
+/***/ },
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(177);
+	var content = __webpack_require__(178);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(179)(content, {});
+	var update = __webpack_require__(180)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21020,10 +21094,10 @@
 	}
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(178)();
+	exports = module.exports = __webpack_require__(179)();
 	// imports
 
 
@@ -21034,7 +21108,7 @@
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports) {
 
 	/*
@@ -21090,7 +21164,7 @@
 
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

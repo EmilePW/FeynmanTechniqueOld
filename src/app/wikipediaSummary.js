@@ -43,7 +43,7 @@ let getWikiSummary = (topic, callback) => {
     }
   ).catch(
     (error) => {
-      console.log('po')
+      console.log(error)
       return callback(error)
     }
   )
