@@ -21032,7 +21032,7 @@
 	  var formattedTopic = capAndUnderscore(topic);
 
 	  // standard uri without topic
-	  var wikipediaURI = 'https://simple.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=';
+	  var wikipediaURI = 'https://simple.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=&explaintext=&titles=';
 
 	  var d = new Promise(function (resolve, reject) {
 	    var req = new XMLHttpRequest();
