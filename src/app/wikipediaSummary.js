@@ -11,7 +11,7 @@ let getWikiSummary = (topic, callback) => {
   let formattedTopic = capAndUnderscore(topic)
 
   // standard uri without topic
-  let wikipediaURI = 'https://simple.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles='
+  let wikipediaURI = 'https://simple.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=&explaintext=&titles='
 
   let d = new Promise((resolve, reject) => {
     let req = new XMLHttpRequest()
